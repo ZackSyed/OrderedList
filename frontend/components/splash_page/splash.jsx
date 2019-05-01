@@ -1,7 +1,13 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
 
 const splash = () => (
-    <h1>This is the beginning of a Todo app, cant see much rn</h1>
+    <>
+    <h1></h1>
+        <Button variant="contained" color="primary">
+        Hello World
+        </Button>
+    </>
 )
 
 export default splash;
