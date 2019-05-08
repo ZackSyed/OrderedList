@@ -1,17 +1,20 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 // import Modal from '../components/modal/modal';
 import Splash from './splash_page/splash'
 
 
 const App = () => (
-    <div>    
+    <div>
+        <React.Fragment>
+            <CssBaseline />
         {/* <Modal /> */}
 
-        <Route exact path='/' component={Splash}/>
-        
+        <AuthRoute exact path='/' component={Splash}/>
+        </React.Fragment>
     </div>
 );
 

@@ -10,7 +10,7 @@ const msp = state => ({
 // change redirect after finishing user show || activity page. 
 const Auth = ({ component: Component, path, loggedIn, exact }) => (
     <Route path={path} exact={exact} render={(props) => (
-        loggedIn ? ( <Redirect to="/dashboard" /> 
+        loggedIn ? ( <Redirect to="/account" /> 
         ) : ( 
             <Component {...props} /> 
         )
