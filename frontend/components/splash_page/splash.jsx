@@ -1,36 +1,53 @@
 import React from 'react';
-import Login from '../users/log_in';
+import SplashList from './splash_list';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-
-import Button from '@material-ui/core/Button';
 
 const styles = {
     root: {
       width: '100%',
       maxWidth: 500,
     },
+    mainTitle: {
+      fontSize: '400%',
+      color: 'black',
+      textAlign: 'center',
+      marginTop: '10px',
+    },
+    smallTitle: {
+      fontSize: '300%',
+      color: 'black',
+      textAlign: 'center',
+      marginTop: '10px',
+    }
   };
   
 
-function Splash(props){
-    const { classes } = props;
+class Splash extends React.Component {
 
-return ( 
-        <>
-        <Typography component="h2" variant="h1" gutterBottom>
-            Ordered List
-        </Typography>
-        <div className="container">
-            <h2 className="Title">Todo List</h2>
-            
-            
+  constructor(props) {
+    super(props);
+  }
 
-        </div>
-            <Login />
-        </>
-    )
+  render() {
+    const { classes } = this.props;
+    
+    return ( 
+            <div className={classes.root}>
+              <Typography className={classes.mainTitle} component="h2" variant="h1" gutterBottom>
+                  OrderedList
+              </Typography>
+                <div className="container">
+                  <Typography className={classes.smallTitle} variant="h3" gutterBottom>
+                    Todo List
+                  </Typography>
+                    <SplashList />
+                </div>
+            </div>
+        )
+  }
+
 }
 
 Splash.propTypes = {
