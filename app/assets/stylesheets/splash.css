@@ -1,10 +1,4 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    width: 94%;
+    padding: 20px;
     background-color: whitesmoke;
-    height: 362px;
-    margin: auto;
-    align-items: center;
-    z-index: 1;
 }

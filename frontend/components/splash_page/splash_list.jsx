@@ -6,21 +6,26 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
 import Login from '../users/log_in';
 import Signup from '../users/sign_up';
 import Demo from '../users/demo_log_in';
 
-const styles = ({
-  root: {
-    width: '50%',
-    maxWidth: 360,
-  },
+const styles = theme => ({
   hidden: {
       display: 'none',
   },
   shown: {
-      marginBottom: '2px',
+      marginBottom: 5,
+      fontSize: 25,
+  },
+  text: {
+    fontSize: '20px',
+    color: theme.palette.primary,
+    [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
+      fontSize: 40,
+    },
   },
   smallTitle: {
     fontSize: '150%',
@@ -39,6 +44,7 @@ class SplashList extends React.Component {
         this.state = {
           checked: '',
         };
+        this.checklist = ['Log In', 'Sign up', 'Demo User'];
     }
 
   handleToggle(value){
@@ -74,27 +80,30 @@ class SplashList extends React.Component {
     const { classes } = this.props;
 
     return (
-      <>
-        <List className={classes.root}>
-          {['Log In', 'Sign up', 'Demo User'].map(value => (
-            <ListItem className={this.state.checked === value || this.state.checked === '' ? 
-            classes.shown : classes.hidden} 
-            key={value} role={undefined} dense button divider
-            onClick={() => this.handleToggle(value)}>
-            <ListItemText primary={`${value}!`} />
-            <Checkbox
-                checked={this.state.checked === value}
-                color="primary"
-                disableRipple={false}
-            />
-            </ListItem>
-          ))}
-        </List>
-
-        <div className={classes.session}>
-          {this.renderForm()}
-        </div>
-      </>
+      <Grid container justify='center' direction='column'>
+          <List>
+            {this.checklist.map(value => (
+            <Grid item key={value} xs={12} >
+              <ListItem className={this.state.checked === value || this.state.checked === '' ? 
+              classes.shown : classes.hidden} 
+              key={value} role={undefined} dense button divider
+              onClick={() => this.handleToggle(value)}>
+              <ListItemText className={classes.text} primary={`${value}!`} />
+              <Checkbox
+                  checked={this.state.checked === value}
+                  color="primary"
+                  disableRipple={false}
+              />
+              </ListItem>
+            </Grid>
+            ))}
+          </List>
+          <Grid item xs={12}>
+            <div className={classes.session}>
+              {this.renderForm()}
+            </div>
+          </Grid>
+      </Grid>
     );
   }
 }

@@ -2,26 +2,31 @@ import React from 'react';
 import SplashList from './splash_list';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = {
+const styles = theme =>  ({
     root: {
-      width: '100%',
-      maxWidth: 500,
+      padding: '20px 0',
     },
     mainTitle: {
       fontSize: '400%',
-      color: 'black',
+      color: theme.palette.text.secondary,
       textAlign: 'center',
       marginTop: '10px',
     },
     smallTitle: {
-      fontSize: '300%',
+      fontSize: '4em',
       color: 'black',
       textAlign: 'center',
       marginTop: '10px',
+    }, 
+    container: {
+       padding: 20,
+       marginTop: 20,
+       backgroundColor: theme.palette.secondary.light,
     }
-  };
+  });
   
 
 class Splash extends React.Component {
@@ -34,17 +39,25 @@ class Splash extends React.Component {
     const { classes } = this.props;
     
     return ( 
-            <div className={classes.root}>
-              <Typography className={classes.mainTitle} component="h2" variant="h1" gutterBottom>
-                  OrderedList
-              </Typography>
-                <div className="container">
-                  <Typography className={classes.smallTitle} variant="h3" gutterBottom>
-                    Todo List
-                  </Typography>
-                    <SplashList />
-                </div>
-            </div>
+            <Grid container className={classes.root} alignItems='center' justify='center'>
+              <Grid item xs={12}>
+                <Typography className={classes.mainTitle} component="h2" variant="h1" gutterBottom>
+                    OrderedList
+                </Typography>
+              </Grid>
+
+              <Grid item xs={12} className={classes.container}> 
+                  <Grid item>
+                    <Typography className={classes.smallTitle} variant="h3" gutterBottom>
+                      Todo List
+                    </Typography>
+                  </Grid>
+
+                  <Grid item xs={12}>
+                      <SplashList />
+                  </Grid>
+              </Grid>
+            </Grid>
         )
   }
 

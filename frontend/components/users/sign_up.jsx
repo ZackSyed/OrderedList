@@ -18,7 +18,7 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-      width: 400,
+      width: 600,
       marginLeft: 'auto',
       marginRight: 'auto',
     },
@@ -39,7 +39,20 @@ const styles = theme => ({
   },
   submit: {
     marginTop: theme.spacing.unit * 3,
+    [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
+      fontSize: '1.5em',
+    },
   },
+  titleText: {
+    [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
+      fontSize: '3em',
+    },
+  },
+  inputText: {
+    [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
+      fontSize: '1.5em',
+    },
+  }
 });
 
 function SignIn(props) {
@@ -52,20 +65,20 @@ function SignIn(props) {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography className={classes.titleText} component="h1" variant="h5">
           Sign up
         </Typography>
         <form className={classes.form}>
           <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="username">Username</InputLabel>
+            <InputLabel className={classes.inputText} htmlFor="username">Username</InputLabel>
             <Input id="username" name="username" autoComplete="username" autoFocus />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
+            <InputLabel className={classes.inputText} htmlFor="email">Email Address</InputLabel>
             <Input id="email" name="email" autoComplete="email" autoFocus />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Password</InputLabel>
+            <InputLabel className={classes.inputText} htmlFor="password">Password</InputLabel>
             <Input name="password" type="password" id="password" autoComplete="current-password" />
           </FormControl>
           <Button
