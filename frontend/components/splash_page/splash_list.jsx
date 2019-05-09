@@ -22,6 +22,12 @@ const styles = ({
   },
   shown: {
       marginBottom: '2px',
+  },
+  smallTitle: {
+    fontSize: '150%',
+    color: 'black',
+    textAlign: 'center',
+    marginTop: '20px',
   }
 });
 
@@ -44,6 +50,8 @@ class SplashList extends React.Component {
 
   renderForm(){
     const { checked } = this.state;
+    const { classes } = this.props;
+
     switch (checked) {
       case 'Log In':
         return <Login />
@@ -52,7 +60,7 @@ class SplashList extends React.Component {
       case 'Demo Log In':
         return <Demo />
       case '':
-        return <Typography variant="h5" gutterBottom>
+        return <Typography className={classes.smallTitle} variant="h5" gutterBottom>
           Pick a Todo Item to start!
         </Typography>
       default:
@@ -66,41 +74,20 @@ class SplashList extends React.Component {
     return (
       <>
         <List className={classes.root}>
-          <ListItem className={this.state.checked === 'Log In' || this.state.checked === '' ? 
-          classes.shown : classes.hidden} 
-          key='Log In' role={undefined} dense button 
-          onClick={() => this.handleToggle('Log In')}>
-          <ListItemText primary={`Log In!`} />
-          <Checkbox
-              checked={this.state.checked === 'Log In'}
-              tabIndex={-1}
-              disableRipple
-          />
-          </ListItem>
-
-          <ListItem className={this.state.checked === 'Sign up' || this.state.checked === '' ? 
-          classes.shown : classes.hidden} 
-          key='Sign Up' role={undefined} dense button 
-          onClick={() => this.handleToggle('Sign up')}>
-          <ListItemText primary={`Sign Up!`} />
-          <Checkbox
-          checked={this.state.checked === 'Sign up'}
-          tabIndex={-1}
-          disableRipple
-          />
-          </ListItem>
-
-          <ListItem className={this.state.checked === 'Demo Log In' || this.state.checked === '' ? 
-          classes.shown : classes.hidden}  
-          key='Demo Log In' role={undefined} dense button 
-          onClick={() => this.handleToggle('Demo Log In')}>
-          <ListItemText primary={`Demo Log In!`} />
-          <Checkbox
-            checked={this.state.checked === 'Demo Log In'}
-            tabIndex={-1}
-            disableRipple
-          />
-        </ListItem>
+          {['Log In', 'Sign up', 'Demo Log In'].map(value => (
+            <ListItem className={this.state.checked === value || this.state.checked === '' ? 
+            classes.shown : classes.hidden} 
+            key={value} role={undefined} dense button 
+            onClick={() => this.handleToggle(value)}>
+            <ListItemText primary={`${value}!`} />
+            <Checkbox
+                checked={this.state.checked === value}
+                tabIndex={-1}
+                color="primary"
+                disableRipple={false}
+            />
+            </ListItem>
+          ))}
         </List>
 
         <div>
