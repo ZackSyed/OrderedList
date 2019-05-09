@@ -15,7 +15,6 @@ const styles = ({
   root: {
     width: '50%',
     maxWidth: 360,
-    backgroundColor: 'whitesmoke',
   },
   hidden: {
       display: 'none',
@@ -28,6 +27,9 @@ const styles = ({
     color: 'black',
     textAlign: 'center',
     marginTop: '20px',
+  },
+  session: {
+    marginTop: '10px',
   }
 });
 
@@ -57,7 +59,7 @@ class SplashList extends React.Component {
         return <Login />
       case 'Sign up':
         return <Signup />
-      case 'Demo Log In':
+      case 'Demo User':
         return <Demo />
       case '':
         return <Typography className={classes.smallTitle} variant="h5" gutterBottom>
@@ -74,15 +76,14 @@ class SplashList extends React.Component {
     return (
       <>
         <List className={classes.root}>
-          {['Log In', 'Sign up', 'Demo Log In'].map(value => (
+          {['Log In', 'Sign up', 'Demo User'].map(value => (
             <ListItem className={this.state.checked === value || this.state.checked === '' ? 
             classes.shown : classes.hidden} 
-            key={value} role={undefined} dense button 
+            key={value} role={undefined} dense button divider
             onClick={() => this.handleToggle(value)}>
             <ListItemText primary={`${value}!`} />
             <Checkbox
                 checked={this.state.checked === value}
-                tabIndex={-1}
                 color="primary"
                 disableRipple={false}
             />
@@ -90,7 +91,7 @@ class SplashList extends React.Component {
           ))}
         </List>
 
-        <div>
+        <div className={classes.session}>
           {this.renderForm()}
         </div>
       </>
