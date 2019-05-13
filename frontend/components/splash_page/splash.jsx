@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme =>  ({
     root: {
-      padding: '20px 0',
+      padding: '20px 10px',
     },
     mainTitle: {
       fontSize: '400%',
@@ -25,7 +25,10 @@ const styles = theme =>  ({
        padding: 20,
        marginTop: 20,
        backgroundColor: theme.palette.secondary.light,
-    }
+       border: 'solid 1px black',
+       borderRadius: 30,
+       boxShadow: `5px 5px 3px ${theme.palette.secondary.dark}`
+    },
   });
   
 

@@ -80,7 +80,7 @@ class SplashList extends React.Component {
     const { classes } = this.props;
 
     return (
-      <Grid container justify='center' direction='column'>
+      <Grid container direction='column'>
           <List>
             {this.checklist.map(value => (
             <Grid item key={value} xs={12} >
