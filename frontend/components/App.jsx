@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+// import { Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -17,7 +17,7 @@ const App = () => (
 
 
             <AuthRoute exact path='/' component={Splash} />
-            <ProtectedRoute path='/account' component={Account} />
+            <ProtectedRoute exact path='/account' component={Account} />
 
         </React.Fragment>
     </div>

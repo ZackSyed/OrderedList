@@ -4,7 +4,7 @@ import { RECEIVE_USER_ERRORS } from '../actions/user_actions';
 
 export default (oldState = [], action) => {
     Object.freeze(oldState);
-    if (action.errors === 'undefined') return state;
+    if (action.errors === undefined) return oldState;
     switch(action.type) {
         case RECEIVE_SESSION_ERRORS:
             return action.errors;

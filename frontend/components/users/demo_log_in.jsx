@@ -12,6 +12,9 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+import { loginUser } from '../../actions/session_actions';
+import { connect } from 'react-redux';
+
 const styles = theme => ({
   main: {
     width: 'auto',
@@ -56,7 +59,17 @@ const styles = theme => ({
 });
 
 function SignIn(props) {
-  const { classes } = props;
+  const { classes, processForm } = props;
+
+  let state = { 
+    username: 'Zak', 
+    password: 'starwars'
+  };
+
+  function handleSubmit(e) {
+    e.preventDefault(); 
+    processForm(state); 
+  }
 
   return (
     <main className={classes.main}>
@@ -68,19 +81,16 @@ function SignIn(props) {
         <Typography className={classes.titleText} component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <FormControl margin="normal" required fullWidth>
             <InputLabel className={classes.inputText} htmlFor="username">Username</InputLabel>
-            <Input id="username" name="username" autoComplete="username" autoFocus />
+            <Input id="username" name="username" autoComplete="username" autoFocus value={state.username}/>
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel className={classes.inputText} htmlFor="password">Password</InputLabel>
-            <Input name="password" type="password" id="password" autoComplete="current-password" />
+            <Input name="password" type="password" id="password" autoComplete="current-password" value={state.password}/>
           </FormControl>
-          {/* <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          /> */}
+
           <Button
             type="submit"
             fullWidth
@@ -100,4 +110,10 @@ SignIn.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SignIn);
+const mdp = dispatch => {
+  return {
+    processForm: (user) => dispatch(loginUser(user)),
+  }
+}
+
+export default connect(null, mdp)(withStyles(styles)(SignIn));
