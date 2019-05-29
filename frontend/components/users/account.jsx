@@ -5,15 +5,14 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
+import Divider from '@material-ui/core/Divider';
+
+import SubList from './sub_list'
 
 const styles = theme => ({
     mainPaper: {
         margin: 30,
         backgroundColor: theme.palette.primary.light,
-        padding: 20,
-    },
-    sidePaper: {
-        margin: 30,
         padding: 20,
     },
     avatar: {
@@ -31,12 +30,9 @@ const styles = theme => ({
         marginBottom: 20,
     },
     info: {
-        margin: 10, 
+        margin: 15, 
         color: '#ffffff',
         fontSize: '1.8rem',
-        [theme.breakpoints.up(400)]: {
-            fontSize: '2.5rem',
-        },
         [theme.breakpoints.up(600)]: {
             fontSize: '3.5rem',
         },
@@ -59,16 +55,15 @@ class Account extends React.Component {
                 <Grid item xs={12}>
                     <Paper elevation={12} className={classes.mainPaper}>
                         <Grid container direction="column" justify="center" alignItems="center">
-                            <Avatar className={classes.avatar}>{currentUser.username[1]}</Avatar>
+                            <Avatar className={classes.avatar}>{currentUser.username[0]}</Avatar>
                             <Typography variant='h5' className={classes.info}>Username: {currentUser.username}</Typography>
                             <Typography variant='h5' className={classes.info}>Email: {currentUser.email}</Typography>
-
-                            <Grid item md={8}>
-                                <Paper elevation={6} className={classes.sidePaper}>
-
-                                </Paper>
-                            </Grid>
                         </Grid>
+
+                        <Divider variant="middle" />
+                        {/* <Grid container direction="column" justify='flex-start' alignItems="center"> */}
+                            <SubList />
+                        {/* </Grid> */}
                     </Paper>
                 </Grid>
             </Grid>
